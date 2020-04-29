@@ -1,0 +1,24 @@
+Package: ggwhiteboard
+Type: Package
+Title: Static and Animated Line, Shading, and Intersection Whiteboard Plots
+Version: 0.1.0
+Authors@R: person(given = "Nick", family = "Huntington-Klein", role = c("aut","cre"), 
+           email = "nhuntington-klein@fullerton.edu", 
+           comment = c(ORCID = "0000-0002-7352-3991"))
+Description: This package provides a set of tools for creating ggplot-based
+    graphs of the kind that might be drawn on a whiteboard,
+    including lines, intersections between lines, shaded areas between lines,
+    and so on. There is also support for animation of these graphs.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Depends: 
+    R (>= 3.4),
+    ggplot2 (>= 3.3.0)
+Imports:
+    dplyr,
+    gganimate,
+    tibble,
+    magrittr,
+    scales
+RoxygenNote: 7.1.0.9000
