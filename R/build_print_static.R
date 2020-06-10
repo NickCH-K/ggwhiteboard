@@ -7,7 +7,7 @@
 #' @export
 
 print.whiteboard <- function(wb,nstage=1) {
-  print(ggboard(wb,nstage=1))
+  print(ggboard(wb,nstage))
 }
 
 
@@ -25,18 +25,56 @@ ggboard <- function(wb,nstage=1) {
   df <- construct_board_data(frame)
 
   # Basic construction of ggplot and add labels
-  p <- ggplot2::ggplot(df) +
-    ggplot2::labs(x=frame$board$x_title,y=frame$board$y_title,
-         title=frame$board$title)
+  p <- ggplot2::ggplot(df)
+
 
   # If range is specified
   if (!is.null(frame$board$range)) {
     p <- p + ggplot2::ylim(frame$board$range)
   }
 
-  # If there's a theme
-  if (!is.null(frame$board$theme)) {
-    p <- p + frame$board$theme
+  # Do zero-axis first so it goes behind the elements
+  if (frame$board$axis_zero == TRUE) {
+    # DETERMINE X MIN AND MAX AND ALSO Y
+    x_min <- df %>%
+      dplyr::select(dplyr::starts_with('x')) %>%
+      as.matrix() %>%
+      min(na.rm=TRUE)
+    x_max <- df %>%
+      dplyr::select(dplyr::starts_with('x')) %>%
+      as.matrix() %>%
+      max(na.rm=TRUE)
+    y_min <- df %>%
+      dplyr::select(dplyr::starts_with('y')) %>%
+      as.matrix() %>%
+      min(na.rm=TRUE)
+    y_max <- df %>%
+      dplyr::select(dplyr::starts_with('y')) %>%
+      as.matrix() %>%
+      max(na.rm=TRUE)
+
+    quadrants <- 1:4
+    if (y_min >= 0) {
+      quadrants <- quadrants[!(quadrants %in% 3:4)]
+    }
+    if (y_max <= 0) {
+      quadrants <- quadrants[!(quadrants %in% 1:2)]
+    }
+    if (x_min >= 0) {
+      quadrants <- quadrants[!(quadrants %in% c(2,3))]
+    }
+    if (x_max <= 0) {
+      quadrants <- quadrants[!(quadrants %in% c(1,4))]
+    }
+
+
+    p <- p + axis_zero(quadrants = quadrants,
+                       x_min = x_min, y_min = y_min,
+                       x_max = x_max, y_max = y_max,
+                       x_title = frame$board$x_title, y_title = frame$board$y_title)
+  } else {
+    p <- p + ggplot2::labs(x=frame$board$x_title,y=frame$board$y_title,
+                           title=frame$board$title)
   }
 
   # Now add the geometries for each element

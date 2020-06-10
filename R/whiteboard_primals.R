@@ -13,7 +13,7 @@
 #' @param ggopts List of aesthetic values to be passed on to \code{ggplot2::geom_line}, such as \code{color}, \code{size}, or \code{linetype}.
 #' @export
 
-add_line <- function(wb,name=NULL,fun=function(x) x, nstage = 1, domain = NULL, df = NULL, label = 'right', labelopts = list(size=18/ggplot2::.pt), ggopts = list(size=2)) {
+add_line <- function(wb,name=NULL,fun=function(x) x, nstage = 1, domain = NULL, df = NULL, label = 'right', labelopts = list(size=18/ggplot2::.pt), ggopts = list(color='#0066cc',size=2)) {
   if (is.null(df) & is.null(name)) {
     stop('Either df or name must be specified.')
   }
