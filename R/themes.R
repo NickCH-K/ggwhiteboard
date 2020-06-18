@@ -31,7 +31,7 @@ theme_board <- function(base_size = 18, base_family = "", base_line_size = base_
 #' @param x_title_loc,y_title_loc The locations of the axis titles, in terms of actual x and y values.
 #' @param title_opts,title_opts_x,title_opts_y A list of options to be passed to \code{ggplot2::annotate} for the axis titles, for both axes or only x or y specifically.
 #' @param line_opts,line_opts_x,line_opts_y A list of options to be passed to \code{ggplot2::geom_segment} for the axis lines, for both axes or only x or y specifically.
-#' @base_theme The **ggplot2** theme on which to build the axis-zero graph. Note that if this is not \code{ggplot2::theme_void}, you will likely have to do a lot of adjustments in \code{ggplot2::theme()} afterwards to make it look good.
+#' @param base_theme The **ggplot2** theme on which to build the axis-zero graph. Note that if this is not \code{ggplot2::theme_void}, you will likely have to do a lot of adjustments in \code{ggplot2::theme()} afterwards to make it look good.
 #' @param base_size Base font size
 #' @param base_family Base font family
 #' @param base_line_size Base size for line elements

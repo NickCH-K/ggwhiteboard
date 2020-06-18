@@ -7,7 +7,7 @@
 blank_board(
   domain = 0:100,
   range = NULL,
-  theme = theme_board(),
+  axis_zero = TRUE,
   x_title = "X",
   y_title = "Y",
   title = NULL
@@ -18,7 +18,7 @@ blank_board(
 
 \item{range}{A two-element numeric vector giving the limits of the whiteboard's y-axis.}
 
-\item{theme}{The **ggplot2** theme to be used. Set to \code{NULL} to use the default **ggplot2** theme. Other theme modifications can be added after the whiteboard is turned into a \code{ggplot} object with \code{print()} or \code{animate_whiteboard()}.}
+\item{axis_zero}{Applies the **ggwhiteboard** pseudo-theme \code{axis_zero}, which forces the x and y axes to center at (0, 0), but also takes some thematic control from the user.}
 
 \item{x_title}{Axis title for the x-axis.}
 

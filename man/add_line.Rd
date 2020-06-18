@@ -13,7 +13,7 @@ add_line(
   df = NULL,
   label = "right",
   labelopts = list(size = 18/ggplot2::.pt),
-  ggopts = list(size = 2)
+  ggopts = list(color = "#0066cc", size = 2)
 )
 }
 \arguments{
